@@ -1,6 +1,12 @@
 <div
-  class="w-full min-h-screen flex justify-center items-center dark:bg-slate-700 bg-slate-50"
+  class="w-full min-h-screen flex flex-col justify-center items-center dark:bg-slate-700 bg-slate-50"
 >
+  <div
+    class="flex justify-center items-center font-semibold md:text-3xl text-sm text-center md:mb-5 mb-2"
+  >
+    {{ "storeApp" | translate }}
+  </div>
+
   <div
     class="sm:w-full w-11/12 max-w-sm bg-white rounded-lg border border-gray-200 shadow-lg md:p-4 p-2 dark:bg-gray-800 dark:text-white dark:border-gray-700"
   >
@@ -9,7 +15,7 @@
       [formGroup]="loginForm"
       (ngSubmit)="onSubmitLogin()"
     >
-      <div class="flex justify-start items-center gap-2">
+      <div class="flex justify-start items-center gap-1">
         <span class="w-auto font-semibold text-xl text-start p-0 m-0">{{
           "login" | translate
         }}</span>

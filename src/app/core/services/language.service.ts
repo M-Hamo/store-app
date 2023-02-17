@@ -1,3 +1,4 @@
+import { Direction } from '@angular/cdk/bidi';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BidirectionallyService } from './bidirectionally.service';
@@ -10,32 +11,28 @@ export class LanguageService {
     private readonly _translate: TranslateService,
     public readonly _bidirectionallyService: BidirectionallyService
   ) {
-    if (!JSON.parse(JSON.stringify(localStorage.getItem('lang'))))
-      localStorage.setItem('lang', 'en');
+    localStorage.getItem('lang') ?? localStorage.setItem('lang', 'en');
 
-    const lang =
-      JSON.parse(JSON.stringify(localStorage.getItem('lang'))) ?? 'ar';
-
-    this.setLanguage(lang);
+    this.setLanguage(
+      JSON.parse(JSON.stringify(localStorage.getItem('lang'))) as string
+    );
   }
 
   public languages: string[] = ['en', 'ar'];
 
-  public lang: string = 'en';
+  public lang!: string;
 
   public setLanguage(lang: string): void {
-    if (localStorage.getItem('lang') !== lang) {
-      this.lang = lang;
+    this.lang = lang;
 
-      this._bidirectionallyService.setDirection(lang === 'en' ? 'ltr' : 'rtl');
+    const dir: Direction = lang === 'en' ? 'ltr' : 'rtl';
 
-      document
-        .getElementsByTagName('html')[0]
-        .setAttribute('dir', lang == 'ar' ? 'rtl' : 'ltr');
+    this._bidirectionallyService.setDirection(dir);
 
-      this._translate.use(lang);
+    document.getElementsByTagName('html')[0].setAttribute('dir', dir);
 
-      localStorage.setItem('lang', lang);
-    }
+    this._translate.use(lang);
+
+    localStorage.setItem('lang', lang);
   }
 }

@@ -1,8 +1,12 @@
 {
+  "storeApp": "Store app",
   "login": "Login",
   "logout": "Logout",
   "userName": "User name",
   "password": "Password",
+  "loginSuccess": "Logon success",
+  "loginFailed": "Logon failed, Plz check user name or password..",
   "welcome": "Welcome",
-  "home": "Home"
+  "home": "Home",
+  "close": "Close"
 }

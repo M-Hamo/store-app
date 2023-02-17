@@ -6,14 +6,14 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { map, Observable, take } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthServiceService } from '../auth/auth-service.service';
-import { IUserVm } from '../utils/user.model';
+import { IUserVm, UserRole } from '../utils/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuardGuard implements CanActivate {
   public constructor(
     private readonly _router: Router,
     private readonly _authServiceService: AuthServiceService
@@ -29,11 +29,11 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     return this._authServiceService.user$.pipe(
       map((user: IUserVm | null) => {
-        const isAuthenticated: boolean = !!user;
+        const isAdmin: boolean = !!user && user?.role === UserRole.ADMIN;
 
-        !isAuthenticated && this._router.navigateByUrl('/');
+        !isAdmin && this._router.navigateByUrl('/forbidden');
 
-        return isAuthenticated;
+        return isAdmin;
       })
     );
   }
