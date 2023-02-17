@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { AppSplashScreenService } from '@shared/services/splash-screen.service';
 import { Subject } from 'rxjs';
 import { filter, takeUntil, tap } from 'rxjs/operators';
+import { LanguageService } from './core/services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly _router: Router,
     private readonly _splashScreen: AppSplashScreenService,
-    private readonly _iconRegistry: MatIconRegistry
+    private readonly _iconRegistry: MatIconRegistry,
+    private readonly _languageService: LanguageService
   ) {
     // Change material icons theme
     this._iconRegistry.setDefaultFontSetClass('material-icons-round');

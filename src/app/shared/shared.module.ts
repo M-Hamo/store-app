@@ -1,12 +1,13 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MaterialModule } from "./material.module";
-import { ButtonComponent } from "./components/button-action/button/button.component";
-import { ShimmerLoadingComponent } from "./components/shimmer-loading/shimmer-loading.component";
-import { TableComponent } from "./components/table/table.component";
-import { NoDataComponent } from "./components/no-data/no-data.component";
+import { MaterialModule } from './material.module';
+import { ButtonComponent } from './components/button-action/button/button.component';
+import { ShimmerLoadingComponent } from './components/shimmer-loading/shimmer-loading.component';
+import { TableComponent } from './components/table/table.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
+import { LanguageComponent } from './components/language/language.component';
 
 const DIRECTIVES: any[] = [];
 
@@ -18,6 +19,7 @@ const THIRD_MODULES: any[] = [
   MaterialModule,
   TableComponent,
   ShimmerLoadingComponent,
+  LanguageComponent,
 ];
 
 const COMMON_MODULES: any[] = [CommonModule, FormsModule, ReactiveFormsModule];

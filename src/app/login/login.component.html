@@ -1,0 +1,58 @@
+<div
+  class="w-full min-h-screen flex justify-center items-center dark:bg-slate-700 bg-slate-50"
+>
+  <div
+    class="sm:w-full w-11/12 max-w-sm bg-white rounded-lg border border-gray-200 shadow-lg md:p-4 p-2 dark:bg-gray-800 dark:text-white dark:border-gray-700"
+  >
+    <form
+      class="w-full flex flex-col justify-center items-stretch gap-3"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmitLogin()"
+    >
+      <div class="flex justify-start items-center gap-2">
+        <span class="w-auto font-semibold text-xl text-start p-0 m-0">{{
+          "login" | translate
+        }}</span>
+
+        <app-language></app-language>
+      </div>
+
+      <input
+        class="bg-gray-50 dark:bg-slate-700 border border-gray-300 text-gray-900 text-lg rounded-lg focus:outline-none focus:ring focus:ring-blue-400 dark:text-white p-2"
+        [ngClass]="
+          loginForm.get('userName')?.touched &&
+          loginForm.get('userName')?.invalid
+            ? 'border-2 border-red-500'
+            : null
+        "
+        [placeholder]="'userName' | translate"
+        formControlName="userName"
+      />
+
+      <input
+        type="password"
+        class="bg-gray-50 dark:bg-slate-700 border border-gray-300 text-gray-900 text-lg rounded-lg focus:outline-none focus:ring focus:ring-blue-400 dark:text-white p-2"
+        [ngClass]="
+          loginForm.get('password')?.touched &&
+          loginForm.get('password')?.invalid
+            ? 'border-2 border-red-500'
+            : null
+        "
+        [placeholder]="'password' | translate"
+        formControlName="password"
+      />
+
+      <app-button
+        class="w-full mt-3"
+        btnClass="w-full text-md"
+        [disabled]="loginForm.invalid"
+        [matType]="ButtonTypes.flat"
+        [color]="ButtonColors.primary"
+        [isLoading]="loginSubmit"
+        type="submit"
+        [text]="'login' | translate"
+      >
+      </app-button>
+    </form>
+  </div>
+</div>

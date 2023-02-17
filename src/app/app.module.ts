@@ -2,36 +2,29 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorInterceptorService } from '@shared/services/error-interceptor.service';
-import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgxProgressBarModule } from './ngx-progressbar.module';
 import { SharedModule } from './shared/shared.module';
+import { EffectsModule } from '@ngrx/effects';
+import { appEffects, appReducers } from './app.state';
+import { StoreModule } from '@ngrx/store';
+import { CoreModule } from './core/core.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AppRoutingModule.Components],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     AppRoutingModule,
-    NgxProgressBarModule,
-    ToastrModule.forRoot({
-      timeOut: 5000,
-      easeTime: 800,
-      positionClass: 'toast-bottom-right',
-    }),
+    CoreModule,
     SharedModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot(appEffects),
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
-      multi: true,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

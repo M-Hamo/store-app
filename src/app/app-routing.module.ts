@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './pages/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'shop',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
-
+  {
+    path: 'login',
+    component: LoginComponent,
+    // canActivate: [ActivateLoginGuard],
+    title: 'Login',
+  },
   {
     path: '**',
     component: NotFoundComponent,
@@ -22,4 +28,6 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  public static Components = [LoginComponent];
+}
