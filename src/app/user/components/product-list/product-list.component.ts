@@ -1,13 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
-import { ConfirmationDialogService } from '@shared/components/confirmation-dialog';
+import { Animations } from '@shared/animations/animations';
 import { ParamsHelper } from '@shared/helpers/param-helper';
-import { BreakpointObserverService } from '@shared/services/breakpoint-observer.service';
-import { ToastrService } from 'ngx-toastr';
 import {
   debounceTime,
   filter,
@@ -27,17 +23,13 @@ import { QUERY } from '../../utils/models/category.model';
   selector: 'product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
+  animations: [Animations],
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly _fb: FormBuilder,
     private readonly _router: Router,
     private readonly _route: ActivatedRoute,
-    private readonly _dialog: MatDialog,
-    private readonly _confirmService: ConfirmationDialogService,
-    private readonly _breakpointObserver: BreakpointObserverService,
-    private readonly _toasterService: ToastrService,
-    private readonly _translateService: TranslateService,
     private readonly _store: Store<IAppState>
   ) {}
 
