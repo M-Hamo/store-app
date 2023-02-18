@@ -10,7 +10,7 @@ A web application to show Categories with Products for user and the admin can ma
 - Security should be applied to the page to restrict only logged in users who can access it.
   This display will appear depending on the user role as follows:
   - #Admin View
-    -- Should display all products in a table (Bonus: use pagination with the data)
+    - Should display all products in a table (Bonus: use pagination with the data)
   - Admin => `User Name : admin , Password : admin `
 - Order details page - a page with the order details (Order Details, Customer Details, products
   details and quantity).
