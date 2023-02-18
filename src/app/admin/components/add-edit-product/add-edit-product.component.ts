@@ -62,6 +62,12 @@ export class AddEditProductComponent implements OnInit {
 
   public submitLoading = false;
 
+  public get modalTitle(): string {
+    return this._translateService.instant(
+      !!this.data?.prod ? 'edit' : 'create'
+    );
+  }
+
   public ngOnInit(): void {
     if (!!this.data?.prod) {
       this.addEditProductForm.patchValue({

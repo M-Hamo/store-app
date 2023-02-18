@@ -2,7 +2,7 @@
   [isLoading]="submitLoading"
   [isValid]="addEditProductForm.valid"
   [submitBtnText]="'save' | translate"
-  [title]="!!data?.prod ? ('edit' | translate) : ('create' | translate)"
+  [title]="modalTitle"
   titleIcon="shopping_basket"
   [cancelBtnText]="'cancel' | translate"
   (submitDialog)="onSubmit()"
