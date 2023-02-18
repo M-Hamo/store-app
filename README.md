@@ -4,11 +4,14 @@ A web application to show Categories with Products for user and the admin can ma
 
 ## Features
 
-- Authentication - Basic login form and use static login users for the 2 roles keep free to login with one of them
+- Authentication - Basic login form and use static login users for the 2 roles:
   - User => `User Name : user , Password : user `
   - Admin => `User Name : admin , Password : admin `
-- Orders page - a page that show all the orders added in the system and the total price for each
-  order and payment method.
+- Security should be applied to the page to restrict only logged in users who can access it.
+  This display will appear depending on the user role as follows:
+  - #Admin View
+    -- Should display all products in a table (Bonus: use pagination with the data)
+  - Admin => `User Name : admin , Password : admin `
 - Order details page - a page with the order details (Order Details, Customer Details, products
   details and quantity).
 - Create new order - a page to create order expecting to choose from the products page some products
@@ -24,8 +27,8 @@ Project is created with:
   - Streamlined Page Title accessibility
   - Ng Optimized Image
 - Typescript
-- NgRx statemanagement
 - RxJS
+- NgRx statemanagement
 - ngx-translation
 - HTML
 - SCSS
