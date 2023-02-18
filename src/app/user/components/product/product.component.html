@@ -1,0 +1,39 @@
+<div
+  *ngIf="!!product"
+  class="h-full max-w-full flex justify-center hover:scale-110 hover:shadow-lg ease-out duration-300 cursor-pointer"
+>
+  <div class="min-h-full max-w-full rounded-lg shadow-lg bg-white">
+    <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
+      <img
+        class="max-h-[160px] w-full rounded-t-lg bg-cover"
+        [src]="product.image"
+        [alt]="product.title"
+      />
+    </a>
+    <div
+      class="flex flex-col justify-center items-stretch md:pt-6 pt-3 md:px-6 px-3"
+    >
+      <h5 class="text-gray-900 text-xl font-medium mb-2 line-clamp-2">
+        {{ product.title }}
+      </h5>
+      <p class="text-gray-700 text-base font-normal mb-4 line-clamp-3">
+        {{ product.description }}
+      </p>
+
+      <div class="flex justify-between items-center">
+        <stars
+          *ngIf="product.rating?.rate"
+          [rate]="product.rating?.rate"
+          class="w-auto"
+        ></stars>
+        <span class="text-gray-700 text-sm font-medium">
+          {{ "count" | translate }} : {{ product.rating?.count }}
+        </span>
+      </div>
+
+      <h1 class="md:mt-3 mt-1 text-gray-700 font-bold text-xl">
+        ${{ product.price }}
+      </h1>
+    </div>
+  </div>
+</div>

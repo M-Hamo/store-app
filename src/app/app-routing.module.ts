@@ -4,11 +4,15 @@ import { AppComponent } from './app.component';
 import { ActivateLoginGuard } from './core/guards/activate-login.guard';
 import { AdminGuardGuard } from './core/guards/admin-guard.guard';
 import { AuthGuard } from './core/guards/auth.guard';
+import { UserGuardGuard } from './core/guards/user.guard';
+import { UserRole } from './core/utils/user.model';
 import { LayoutContainerComponent } from './layout/layout-container/layout-container.component';
 import { LayoutHeaderComponent } from './layout/layout-header/layout-header.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './pages/forbidden.component';
 import { NotFoundComponent } from './pages/not-found.component';
+
+const currentUser = JSON.parse(localStorage.getItem('current_user') as any);
 
 const routes: Routes = [
   {
@@ -29,7 +33,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo:
+          currentUser?.role === UserRole.ADMIN ? 'dashboard' : 'products',
         pathMatch: 'full',
       },
       {
@@ -44,7 +49,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./user/user.module').then((m) => m.UserModule),
         title: 'Products',
-        canActivate: [AdminGuardGuard],
+        canActivate: [UserGuardGuard],
       },
       {
         path: '**',

@@ -33,5 +33,6 @@
   "updatedSuccess": "Item updated successfully.",
   "updatedFailed": "Update Failed.",
   "createSuccess": "Item create successfully.",
-  "createFailed": "Creation Failed."
+  "createFailed": "Creation Failed.",
+  "count": "Count"
 }

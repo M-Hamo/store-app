@@ -1,1 +1,69 @@
-<p>product-list works!</p>
+<section class="w-full h-full flex flex-col justify-center items-stretch pb-10">
+  <div class="h-32 bg-slate-200" ngClass=""></div>
+
+  <div class="flex justify-center items-start">
+    <div
+      class="sm:w-11/12 w-full flex flex-col justify-center items-stretch sm:gap-2 gap-1 -mt-28"
+    >
+      <ng-container [formGroup]="filterForm">
+        <div
+          *ngIf="allCategories$ | async as allCategories"
+          class="md:sticky md:top-[75px] grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-stretch content-sart md:gap-3 sm:gap-2 gap-1"
+        >
+          <div
+            *ngFor="let cat of allCategories; let i = index"
+            class="flex items-center pl-4 border border-gray-200 bg-white rounded-xl shadow-lg"
+            [ngClass]="{
+              'bg-blue-500': filterForm.get('category')?.value == cat
+            }"
+          >
+            <input
+              [id]="i + 'input'"
+              [value]="cat"
+              formControlName="category"
+              name="category"
+              type="radio"
+              class="w-5 h-5 text-blue-600 bg-transparent border-gray-300 focus:ring-0"
+              [ngClass]="{
+                'text-white': filterForm.get('category')?.value == cat
+              }"
+            />
+            <label
+              [for]="i + 'input'"
+              class="w-full py-4 ml-2 text-sm font-medium text-gray-900 bg-transparent cursor-pointer"
+              [ngClass]="{
+                'text-white ': filterForm.get('category')?.value == cat
+              }"
+              >{{ cat }}</label
+            >
+          </div>
+        </div>
+      </ng-container>
+      <div
+        *ngIf="productsLoaded; else loading"
+        class="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-stretch content-sart md:gap-3 sm:gap-2 gap-1"
+      >
+        <product *ngFor="let prod of productsList" [product]="prod"></product>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loading>
+  <div class="w-full min-h-[50vh] flex justify-center items-center">
+    <div class="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>

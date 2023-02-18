@@ -72,6 +72,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this._store.dispatch(GetAllProducts());
+    this._screenSizeHandler();
     this._paramsChanges();
     this._searchChangeHandler();
   }
