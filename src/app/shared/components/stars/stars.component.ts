@@ -14,7 +14,7 @@ import { Component, Input } from '@angular/core';
       <div class="w-[112px] flex flex-row justify-start items-center gap-1">
         <svg
           *ngFor="let item of [0, 0, 0, 0, 0]"
-          class="w-5 h-5 fill-current text-gray-700"
+          class="w-5 h-5 fill-current text-blue-500"
           viewBox="0 0 24 24"
         >
           <path

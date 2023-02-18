@@ -29,7 +29,7 @@
         [data]="productsList"
         [dataLoaded]="productsLoaded"
         [extendable]="true"
-        [colSpanCount]="7"
+        [colSpanCount]="9"
       >
         <ng-template #headers>
           <th class="sm:text-[14px] text-xs text-start"></th>
@@ -44,6 +44,14 @@
 
           <th class="sm:text-[14px] text-xs text-start">
             {{ "price" | translate }}
+          </th>
+
+          <th class="sm:text-[14px] text-xs text-start">
+            {{ "rating" | translate }}
+          </th>
+
+          <th class="sm:text-[14px] text-xs text-start">
+            {{ "count" | translate }}
           </th>
 
           <th class="sm:text-[14px] text-xs text-start">
@@ -76,7 +84,13 @@
           </td>
 
           <td class="sm:text-[15px] text-xs break-words">
-            <img [ngSrc]="row?.image" width="80" height="80" loading="eager" />
+            <img
+              [ngSrc]="row?.image"
+              width="100"
+              height="80"
+              loading="eager"
+              class="rounded-xl border-2 border-gray-200 shadow-md hover:scale-150"
+            />
           </td>
 
           <td
@@ -87,6 +101,14 @@
 
           <td class="sm:text-[15px] text-xs break-words">
             {{ (row?.price | number : "1.2") ?? "ــــــــــ" }}$
+          </td>
+
+          <td class="sm:text-[15px] text-xs break-words">
+            <stars [rate]="row?.rating?.rate"></stars>
+          </td>
+
+          <td class="sm:text-[15px] text-xs break-words">
+            {{ row?.rating?.count ?? "ــــــــــ" }}
           </td>
 
           <td class="sm:text-[15px] text-xs break-words">
