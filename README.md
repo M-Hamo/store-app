@@ -11,11 +11,12 @@ A web application to show Categories with Products for user and the admin can ma
   This display will appear depending on the user role as follows:
   - #Admin View
     - Should display all products in a table (Bonus: use pagination with the data)
-  - Admin => `User Name : admin , Password : admin `
-- Order details page - a page with the order details (Order Details, Customer Details, products
-  details and quantity).
-- Create new order - a page to create order expecting to choose from the products page some products
-  then open a popup to add the order details.
+    - Can add product
+    - Can update product
+    - Can delete product
+  - #User View
+    - Show the different categories and under each category show the available products and filters section. (Bonus: use loading while getting the data - changing the products list with animation)
+    - For each product card user should see the full data
 
 ## Technologies & Packages
 
