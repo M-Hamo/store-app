@@ -37,6 +37,8 @@ Project is created with:
 - RxJS
 - NgRx statemanagement
 - ngx-translation
+- shared components
+- angular material
 - HTML
 - SCSS
 - Tailwind CSS
