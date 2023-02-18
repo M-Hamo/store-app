@@ -64,8 +64,25 @@
 
       <ng-template #loader>
         <tr>
-          <td class="p-0" [attr.colspan]="colSpanCount">
-            <shimmer-loading></shimmer-loading>
+          <td [attr.colspan]="colSpanCount">
+            <div
+              class="p-0 h-auto min-h-[50vh] w-full flex justify-center items-center"
+            >
+              <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
           </td>
         </tr>
       </ng-template>

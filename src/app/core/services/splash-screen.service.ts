@@ -1,7 +1,7 @@
-import { Inject, Injectable } from "@angular/core";
-import { DOCUMENT } from "@angular/common";
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AppSplashScreenService {
   public constructor(@Inject(DOCUMENT) private readonly _document: Document) {}
 
@@ -9,5 +9,5 @@ export class AppSplashScreenService {
    * Hide the splash screen
    */
   public hide = (): void =>
-    this._document.getElementById("preloader")?.classList.add("hidden");
+    this._document.getElementById('preloader')?.classList.add('hidden');
 }

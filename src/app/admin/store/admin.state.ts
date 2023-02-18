@@ -1,13 +1,15 @@
-import { ICategoryVm } from '../utils/interfaces/category.interface';
+import { IProductVm } from '../utils/interfaces/products.interface';
 
 export interface AdminStates {
-  categoryList: string[] | null;
-  category: ICategoryVm | null;
-  // productsCategory: IGetProductsList[] | null;
+  productsList: IProductVm[] | null;
+  productDeletedSuccess: boolean | null;
+  productUpdatedSuccess: boolean | null;
+  productCreatedSuccess: boolean | null;
 }
 
 export const adminInitialState: AdminStates = {
-  categoryList: null,
-  category: null,
-  // productsCategory: null,
+  productsList: null,
+  productDeletedSuccess: null,
+  productUpdatedSuccess: null,
+  productCreatedSuccess: null,
 };

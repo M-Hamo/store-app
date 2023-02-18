@@ -1,4 +1,4 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ContentChild,
@@ -7,46 +7,42 @@ import {
   OnInit,
   Output,
   TemplateRef,
-} from "@angular/core";
-import { ShimmerLoadingComponent } from "../shimmer-loading/shimmer-loading.component";
+} from '@angular/core';
+import { ShimmerLoadingComponent } from '../shimmer-loading/shimmer-loading.component';
 
 @Component({
   standalone: true,
   imports: [CommonModule, ShimmerLoadingComponent],
-  selector: "app-table",
-  templateUrl: "./table.component.html",
-  styleUrls: ["./table.component.scss"],
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() public readonly data!: any[];
+  @Input() public data!: any[];
 
-  @Input() public readonly colSpanCount?: number;
+  @Input() public colSpanCount?: number;
 
-  @Input() public readonly dataLoaded?: boolean;
+  @Input() public dataLoaded?: boolean;
 
-  @Input() public readonly headerClass?: string;
+  @Input() public headerClass?: string;
 
-  @Input() public readonly rowClass?: string;
+  @Input() public rowClass?: string;
 
-  @Input() public readonly extendable?: boolean = false;
+  @Input() public extendable?: boolean = false;
 
-  @Input() public readonly extendableByDefault?: boolean;
+  @Input() public extendableByDefault?: boolean;
 
-  @Output() public readonly onRowClicked = new EventEmitter<any>();
+  @Output() public onRowClicked = new EventEmitter<any>();
 
-  @ContentChild("headers") public readonly headers:
-    | TemplateRef<any>
-    | undefined;
+  @ContentChild('headers') public headers: TemplateRef<any> | undefined;
 
-  @ContentChild("rows") public readonly rows: TemplateRef<any> | undefined;
+  @ContentChild('rows') public rows: TemplateRef<any> | undefined;
 
-  @ContentChild("pagination") public readonly pagination:
-    | TemplateRef<any>
-    | undefined;
+  @ContentChild('pagination') public pagination: TemplateRef<any> | undefined;
 
-  @ContentChild("noData") public readonly noData: TemplateRef<any> | undefined;
+  @ContentChild('noData') public noData: TemplateRef<any> | undefined;
 
-  @ContentChild("extendableArea") public readonly extendableArea:
+  @ContentChild('extendableArea') public extendableArea:
     | TemplateRef<any>
     | undefined;
 

@@ -2,57 +2,75 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
-import { CategoriesService } from '../services/categories.service';
+import { ProductsService } from '../services/products.service';
+import { IProductVm } from '../utils/interfaces/products.interface';
 import {
-  GetAllCategories,
+  CreateProduct,
+  CreateProductFailed,
+  CreateProductSuccess,
+  DeleteProduct,
+  DeleteProductFailed,
+  DeleteProductSuccess,
   GetAllCategoriesFail,
-  GetAllCategoriesSuccess,
+  GetAllProducts,
+  GetAllProductsSuccess,
+  UpdateProduct,
+  UpdateProductFailed,
+  UpdateProductSuccess,
 } from './admin.actions';
 
 @Injectable()
 export class AdminEffects {
   constructor(
     private readonly _actions: Actions,
-    private readonly _categoryService: CategoriesService
+    private readonly _productsService: ProductsService
   ) {}
 
-  public getCategoriesList$ = createEffect(() =>
+  public getAllProducts$ = createEffect(() =>
     this._actions.pipe(
-      ofType(GetAllCategories),
+      ofType(GetAllProducts),
       switchMap(() =>
-        this._categoryService.getCategories$.pipe(
-          switchMap((res) =>
-            of(GetAllCategoriesSuccess({ allCategories: res }))
-          ),
+        this._productsService.allProducts$.pipe(
+          switchMap((res) => of(GetAllProductsSuccess({ productsList: res }))),
           catchError(() => of(GetAllCategoriesFail()))
         )
       )
     )
   );
-  // getCategoryProducts$ = createEffect(() =>
-  //   this.actions.pipe(
-  //     ofType(GetCategoryProducts),
-  //     switchMap((action) => {
-  //       return this._category.GetCategoryProducts(action.categoryName).pipe(
-  //         switchMap((products) =>
-  //           of(GetCategoryProductsSuccess({ products: products }))
-  //         ),
-  //         catchError(() => of(GetCategoryProductsFail()))
-  //       );
-  //     })
-  //   )
-  // );
-  // getProduct$ = createEffect(() =>
-  //   this.actions.pipe(
-  //     ofType(GetCategory),
-  //     switchMap((action) => {
-  //       return this._category.GetCategory(action?.searchKeyword).pipe(
-  //         switchMap((category) =>
-  //           of(GetCategorySuccess({ category: category }))
-  //         ),
-  //         catchError(() => of(GetCategoryFail()))
-  //       );
-  //     })
-  //   )
-  // );
+
+  public deleteProduct$ = createEffect(() =>
+    this._actions.pipe(
+      ofType(DeleteProduct),
+      switchMap(({ prod }) =>
+        this._productsService.deleteProduct(prod?.id as number).pipe(
+          switchMap(() => of(DeleteProductSuccess({ prod }))),
+          catchError(() => of(DeleteProductFailed()))
+        )
+      )
+    )
+  );
+
+  public createProduct$ = createEffect(() =>
+    this._actions.pipe(
+      ofType(CreateProduct),
+      switchMap(({ prod }) =>
+        this._productsService.addNewProduct(prod).pipe(
+          switchMap((res) => of(CreateProductSuccess({ prod: res }))),
+          catchError(() => of(CreateProductFailed()))
+        )
+      )
+    )
+  );
+
+  public updateProduct$ = createEffect(() =>
+    this._actions.pipe(
+      ofType(UpdateProduct),
+      switchMap(({ prod }) =>
+        this._productsService.updateProduct(prod).pipe(
+          switchMap(() => of(UpdateProductSuccess({ prod }))),
+          catchError(() => of(UpdateProductFailed()))
+        )
+      )
+    )
+  );
 }

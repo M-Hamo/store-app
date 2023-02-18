@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { ActivateLoginGuard } from './core/guards/activate-login.guard';
 import { AdminGuardGuard } from './core/guards/admin-guard.guard';
 import { AuthGuard } from './core/guards/auth.guard';
@@ -22,16 +23,33 @@ const routes: Routes = [
     title: 'Login',
   },
   {
-    path: 'store',
+    path: 'store-app',
     component: LayoutContainerComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'board',
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: 'dashboard',
         loadChildren: () =>
           import('./admin/admin.module').then((m) => m.AdminModule),
         title: 'Dashboard',
         canActivate: [AdminGuardGuard],
+      },
+      {
+        path: 'products',
+        loadChildren: () =>
+          import('./user/user.module').then((m) => m.UserModule),
+        title: 'Products',
+        canActivate: [AdminGuardGuard],
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
+        title: 'Not found page',
       },
     ],
   },
@@ -55,6 +73,7 @@ const routes: Routes = [
 })
 export class AppRoutingModule {
   public static Components = [
+    AppComponent,
     LoginComponent,
     LayoutContainerComponent,
     LayoutHeaderComponent,

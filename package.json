@@ -25,6 +25,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "material-icons": "^1.13.1",
+    "ng-lazyload-image": "^9.1.3",
     "ngx-progressbar": "^9.0.0",
     "ngx-toastr": "^16.0.2",
     "rxjs": "~7.5.0",

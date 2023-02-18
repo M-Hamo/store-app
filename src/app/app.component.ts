@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { NavigationEnd, Router } from '@angular/router';
-import { AppSplashScreenService } from '@shared/services/splash-screen.service';
 import { Subject } from 'rxjs';
 import { filter, takeUntil, tap } from 'rxjs/operators';
 import { LanguageService } from './core/services/language.service';
+import { AppSplashScreenService } from './core/services/splash-screen.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._iconRegistry.setDefaultFontSetClass('material-icons-round');
   }
 
-  private readonly _destroyAll$ = new Subject<unknown>();
+  private readonly _unsubscribeAll$ = new Subject<unknown>();
 
   public ngOnInit(): void {
     this._routerObserver();
@@ -38,13 +38,13 @@ export class AppComponent implements OnInit, OnDestroy {
           this._splashScreen.hide();
         }),
         //Close subscription when component destroy
-        takeUntil(this._destroyAll$)
+        takeUntil(this._unsubscribeAll$)
       )
       .subscribe();
   };
 
   public ngOnDestroy(): void {
-    this._destroyAll$.next(undefined);
-    this._destroyAll$.complete();
+    this._unsubscribeAll$.next(undefined);
+    this._unsubscribeAll$.complete();
   }
 }

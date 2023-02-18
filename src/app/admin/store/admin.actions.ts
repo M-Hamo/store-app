@@ -1,18 +1,72 @@
 import { createAction, props } from '@ngrx/store';
+import { IProductVm } from '../utils/interfaces/products.interface';
 
 export enum adminActionEnum {
+  GET_ALL_PRODUCTS = '[PRODUCTS] GET ALL PRODUCTS',
+  GET_ALL_PRODUCTS_SUCCESS = '[PRODUCTS] GET ALL PRODUCTS SUCCESS',
+  GET_ALL_PRODUCTS_FAILED = '[PRODUCTS] GET ALL PRODUCTS FAILED',
+
+  DELETE_PRODUCT = '[PRODUCTS] DELETE PRODUCT',
+  DELETE_PRODUCT_SUCCESS = '[PRODUCTS] DELETE PRODUCT SUCCESS',
+  DELETE_PRODUCT_FAILED = '[PRODUCTS] DELETE PRODUCT FAILED',
+
+  UPDATE_PRODUCT = '[PRODUCTS] UPDATE PRODUCT',
+  UPDATE_PRODUCT_SUCCESS = '[PRODUCTS] UPDATE PRODUCT SUCCESS',
+  UPDATE_PRODUCT_FAILED = '[PRODUCTS] UPDATE PRODUCT FAILED',
+
+  CREATE_PRODUCT = '[PRODUCTS] CREATE PRODUCT',
+  CREATE_PRODUCT_SUCCESS = '[PRODUCTS] CREATE PRODUCT SUCCESS',
+  CREATE_PRODUCT_FAILED = '[PRODUCTS] CREATE PRODUCT FAILED',
+
   GET_ALL_CATEGORY = '[CATEGORY] GET ALL CATEGORY',
   GET_ALL_CATEGORY_SUCCESS = '[CATEGORY] GET ALL CATEGORY  SUCCESS',
   GET_ALL_CATEGORY_FAIL = '[CATEGORY] GET ALL CATEGORY FAIL',
-
-  GET_CATEGORY_PRODUCTS = '[CATEGORY] GET CATEGORY PRODUCTS',
-  GET_CATEGORY_PRODUCTS_SUCCESS = '[CATEGORY] GET CATEGORY PRODUCTS SUCCESS',
-  GET_CATEGORY_PRODUCTS_FAIL = '[CATEGORY] GET CATEGORY PRODUCTS FAIL',
-
-  GET_CATEGORIES = '[CATEGORY] GET CATEGORIES',
-  GET_CATEGORIES_SUCCESS = '[CATEGORY] GET CATEGORIES  SUCCESS',
-  GET_CATEGORIES_FAIL = '[CATEGORY] GET CATEGORIES FAIL',
 }
+
+export const GetAllProducts = createAction(adminActionEnum.GET_ALL_PRODUCTS);
+export const GetAllProductsSuccess = createAction(
+  adminActionEnum.GET_ALL_PRODUCTS_SUCCESS,
+  props<{ productsList: IProductVm[] }>()
+);
+export const GetAllProductsFailed = createAction(
+  adminActionEnum.GET_ALL_PRODUCTS_FAILED
+);
+
+export const DeleteProduct = createAction(
+  adminActionEnum.DELETE_PRODUCT,
+  props<{ prod: IProductVm }>()
+);
+export const DeleteProductSuccess = createAction(
+  adminActionEnum.DELETE_PRODUCT_SUCCESS,
+  props<{ prod: IProductVm }>()
+);
+export const DeleteProductFailed = createAction(
+  adminActionEnum.DELETE_PRODUCT_FAILED
+);
+
+export const UpdateProduct = createAction(
+  adminActionEnum.UPDATE_PRODUCT,
+  props<{ prod: IProductVm }>()
+);
+export const UpdateProductSuccess = createAction(
+  adminActionEnum.UPDATE_PRODUCT_SUCCESS,
+  props<{ prod: IProductVm }>()
+);
+export const UpdateProductFailed = createAction(
+  adminActionEnum.UPDATE_PRODUCT_FAILED
+);
+
+export const CreateProduct = createAction(
+  adminActionEnum.CREATE_PRODUCT,
+  props<{ prod: IProductVm }>()
+);
+export const CreateProductSuccess = createAction(
+  adminActionEnum.CREATE_PRODUCT_SUCCESS,
+  props<{ prod: IProductVm }>()
+);
+export const CreateProductFailed = createAction(
+  adminActionEnum.CREATE_PRODUCT_FAILED
+);
 
 export const GetAllCategories = createAction(adminActionEnum.GET_ALL_CATEGORY);
 
@@ -24,24 +78,3 @@ export const GetAllCategoriesSuccess = createAction(
 export const GetAllCategoriesFail = createAction(
   adminActionEnum.GET_ALL_CATEGORY_FAIL
 );
-// //* GET CATEGORY  ACTIONS ENUM */
-// export const GetCategoryProducts = createAction(
-//   categoryActionEnum.GET_CATEGORY_PRODUCTS,
-//   props<{ categoryName: string }>()
-// );
-// export const GetCategoryProductsSuccess = createAction(
-//   categoryActionEnum.GET_CATEGORY_PRODUCTS_SUCCESS,
-//   props<{ products: IGetProductsList[] }>()
-// );
-// export const GetCategoryProductsFail = createAction(
-//   categoryActionEnum.GET_CATEGORY_PRODUCTS_FAIL
-// );
-// //* GET CATEGORIES ACTIONS ENUM */
-// export const GetCategories = createAction(categoryActionEnum.GET_CATEGORIES);
-// export const GetCategoriesSuccess = createAction(
-//   categoryActionEnum.GET_CATEGORIES_SUCCESS,
-//   props<{ categoryList: string[] }>()
-// );
-// export const GetCategoriesFail = createAction(
-//   categoryActionEnum.GET_CATEGORIES_FAIL
-// );

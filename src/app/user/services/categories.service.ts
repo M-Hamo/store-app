@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConnectionService } from 'src/app/core/services/connection.service';
 import { Endpoints } from 'src/app/core/utils/endpoints';
+import { IProductVm } from '../../admin/utils/interfaces/products.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,10 @@ export class CategoriesService {
 
   public getCategories$: Observable<string[]> = this._connectionService.get(
     this.endpoints.dashboard.getCategories
+  );
+
+  public allProducts$: Observable<IProductVm[]> = this._connectionService.get(
+    this.endpoints.dashboard.getAllProducts
   );
 
   // public GetCategoryProducts(

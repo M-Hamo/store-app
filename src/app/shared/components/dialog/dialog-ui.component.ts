@@ -1,36 +1,37 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule } from '@angular/common';
 import {
   Component,
   Input,
   Output,
   EventEmitter,
   ContentChild,
-  ElementRef,
-} from "@angular/core";
+  TemplateRef,
+} from '@angular/core';
+import { BidirectionallyService } from 'src/app/core/services/bidirectionally.service';
 
 import {
   ButtonColors,
   ButtonTypes,
-} from "src/app/shared/utils/button-properties";
-import { SharedModule } from "./../../shared.module";
+} from 'src/app/shared/utils/button-properties';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, SharedModule],
-  selector: "app-dialog",
-  templateUrl: "./dialog-ui.component.html",
-  styleUrls: ["./dialog-ui.component.scss"],
+  selector: 'app-dialog',
+  templateUrl: './dialog-ui.component.html',
+  styleUrls: ['./dialog-ui.component.scss'],
 })
 export class DialogComponent {
-  @ContentChild("headerContent") public headerContent?: ElementRef<null>;
+  public constructor(
+    private readonly _bidirectionallyService: BidirectionallyService
+  ) {}
+  @ContentChild('headerContent') public headerContent!: TemplateRef<any>;
 
-  @ContentChild("footerContent") public footerContent?: ElementRef<null>;
+  @ContentChild('footerContent') public footerContent!: TemplateRef<any>;
 
   @Input() public title?: string;
 
   @Input() public titleIcon?: string;
 
-  @Input() public submitBtnText = "save";
+  @Input() public submitBtnText = 'save';
 
   @Input() public deleteBtnText?: string;
 
@@ -63,4 +64,6 @@ export class DialogComponent {
   public buttonTypes = ButtonTypes;
 
   public buttonColors = ButtonColors;
+
+  public readonly direction = this._bidirectionallyService.direction;
 }

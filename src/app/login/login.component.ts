@@ -63,7 +63,9 @@ export class LoginComponent {
 
           if (res?.status === 200) {
             this._router.navigate([
-              res?.role === UserRole.ADMIN ? '/store/board' : '/store/products',
+              res?.role === UserRole.ADMIN
+                ? '/store-app/dashboard'
+                : '/store-app/products',
             ]);
           }
         },
