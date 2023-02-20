@@ -217,7 +217,10 @@ export class ProductsListComponent implements OnInit, OnDestroy {
                       .includes(search?.toLowerCase() as string)
                   )
                 : res
-            )?.slice(index, size);
+            )?.slice(
+              index ? (index as number) * (size as number) : 0,
+              index ? (index as number) * (size as number) + 10 : size
+            );
 
             this.tableConfig.totalLength = res.length;
 
