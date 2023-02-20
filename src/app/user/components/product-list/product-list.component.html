@@ -15,7 +15,7 @@
             *ngFor="let cat of allCategories; let i = index"
             class="flex items-center px-4 border-2 border-white bg-white rounded-xl shadow-lg"
             [ngClass]="{
-              'bg-blue-500': filterForm.get('category')?.value == cat
+              'bg-blue-400': filterForm.get('category')?.value == cat
             }"
           >
             <input
@@ -33,7 +33,7 @@
               [for]="i + 'input'"
               class="w-full py-4 mx-2 text-sm font-medium text-gray-900 bg-transparent cursor-pointer"
               [ngClass]="{
-                'text-white ': filterForm.get('category')?.value == cat
+                'text-white': filterForm.get('category')?.value == cat
               }"
               >{{ cat }}</label
             >
