@@ -10,10 +10,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
 import { IAppState } from 'src/app/app.state';
 import { BidirectionallyService } from 'src/app/core/services/bidirectionally.service';
-import { CreateProduct, UpdateProduct } from '../../store';
+import { CreateProduct, GetAllCategories, UpdateProduct } from '../../store';
 import { IAddEditProductFormGroup } from '../../utils/interfaces/add-edit-product-form-group.interface';
 import { IProductVm } from '../../utils/interfaces/products.interface';
 
@@ -58,6 +59,10 @@ export class AddEditProductComponent implements OnInit {
       }),
     });
 
+  public allCategories$: Observable<string[] | null> = this._store.pipe(
+    select((state: IAppState) => state.products.categoryList)
+  );
+
   public readonly dir$ = this._direction.direction$;
 
   public submitLoading = false;
@@ -69,6 +74,8 @@ export class AddEditProductComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this._store.dispatch(GetAllCategories());
+
     if (!!this.data?.prod) {
       this.addEditProductForm.patchValue({
         ...this.data?.prod,

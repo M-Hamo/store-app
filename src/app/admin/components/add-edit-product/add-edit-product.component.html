@@ -50,9 +50,17 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field [dir]="dir" appearance="fill">
+    <mat-form-field
+      *ngIf="allCategories$ | async as allCategories"
+      [dir]="dir"
+      appearance="fill"
+    >
       <mat-label>{{ "category" | translate }}</mat-label>
-      <input formControlName="category" matInput />
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let cat of allCategories" [value]="cat">
+          {{ cat }}
+        </mat-option>
+      </mat-select>
       <mat-error
         *ngIf="
           addEditProductForm.get('category')?.touched &&
